@@ -1,3 +1,4 @@
+# test_page1.py
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -6,26 +7,26 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-driver = webdriver.Chrome()
-driver.maximize_window()
+def test_login_page():
 
-driver.get("https://practicetestautomation.com/practice-test-login/")
+    driver = webdriver.Chrome()
+    driver.maximize_window()
 
-wait = WebDriverWait(driver,10)
+    driver.get("https://practicetestautomation.com/practice-test-login/")
 
-driver.find_element(By.ID,"username").send_keys("student")
-driver.find_element(By.ID,"password").send_keys("Password123")
+    wait = WebDriverWait(driver, 10)
 
-time.sleep(2)  
+    driver.find_element(By.ID, "username").send_keys("student")
+    driver.find_element(By.ID, "password").send_keys("Password123")
 
-wait.until(EC.element_to_be_clickable((By.ID, "submit"))).click()
+    time.sleep(2)
 
-driver.save_screenshot(r"C:\Users\Shubham\Desktop\PARA_BANK\Screenshots\login_success.png")
+    wait.until(
+        EC.element_to_be_clickable((By.ID, "submit"))
+    ).click()
 
-driver.maximize_window()
+    driver.save_screenshot("login_success.png")
 
-assert "logged-in-successfully" in driver.current_url
+    assert "logged-in-successfully" in driver.current_url
 
-
-
-driver.quit()
+    driver.quit()
